@@ -1,6 +1,6 @@
 ![build status](https://github.com/atomic14/diy-esp32-epub-reader/actions/workflows/build-test-on-push.yml/badge.svg)
 
-## **[English](./README.MD) | 中文**
+## **[English](https://github.com/trumeen/diy-esp32-epub-reader/blob/main/README.md) | 中文**
 
 # 英文的为原版说明
 
