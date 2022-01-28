@@ -22,7 +22,14 @@ static int skip_word(const char *text, int index, int length)
 {
   while (index < length && !is_whitespace(text[index]))
   {
-    index++;
+    if ((text[index] & 0x80) == 0)
+    {
+      index++;
+    }
+    else
+    {
+      return index + 3;
+    }
   }
   return index;
 }
@@ -57,12 +64,24 @@ void TextBlock::add_span(const char *span, bool is_bold, bool is_italic)
     int word_length = index - word_start;
     if (word_length > 0)
     {
-      // null terminate the word
-      text[word_start + word_length] = '\0';
-      // store the information about the word for later
-      words.push_back(text + word_start);
-      // store the style for the word
-      word_styles.push_back((is_bold ? BOLD_SPAN : 0) | (is_italic ? ITALIC_SPAN : 0));
+      if ((text[index] & 0x80) == 0)
+      {
+        // null terminate the word
+        text[word_start + word_length] = '\0';
+        // store the information about the word for later
+        words.push_back(text + word_start);
+        // store the style for the word
+        word_styles.push_back((is_bold ? BOLD_SPAN : 0) | (is_italic ? ITALIC_SPAN : 0));
+      }
+      else
+      {
+        char *chinese = new char[word_length];
+        strncpy(chinese, text + word_start, word_length);
+        chinese[word_length] = '\0';
+        words.push_back(chinese);
+        // store the style for the word
+        word_styles.push_back((is_bold ? BOLD_SPAN : 0) | (is_italic ? ITALIC_SPAN : 0));
+      }
     }
   }
 }

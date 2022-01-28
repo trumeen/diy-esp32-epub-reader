@@ -150,6 +150,7 @@ void handleEpubList(Renderer *renderer, UIAction action, bool needs_redraw)
     contents->load();
     contents->set_needs_redraw();
     handleEpubTableContents(renderer, NONE, true);
+    ESP_LOGI("main", "Memory before main task start %d", esp_get_free_heap_size());
     return;
   case NONE:
   default:
