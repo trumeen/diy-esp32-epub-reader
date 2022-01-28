@@ -1,6 +1,6 @@
 ![build status](https://github.com/atomic14/diy-esp32-epub-reader/actions/workflows/build-test-on-push.yml/badge.svg)
 
-## **English | [中文](./README_CN.MD)**
+## **English | [中文](https://github.com/trumeen/diy-esp32-epub-reader/blob/main/README_CN.md)**
 
 # ESP32 Based ePub Reader
 
